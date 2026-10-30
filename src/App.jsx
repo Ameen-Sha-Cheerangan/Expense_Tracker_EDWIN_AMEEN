@@ -4,7 +4,7 @@ import ExpenseForm from './components/ExpenseForm.jsx'
 import ExpenseList from './components/ExpenseList.jsx'
 import './App.css'
 
-// App has no props; it owns the expenses and selected category state for this session.
+// App owns in-session expense and category state; child components receive data and callbacks as props.
 function App() {
   const [expenses, setExpenses] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('')
@@ -14,6 +14,12 @@ function App() {
       { ...expense, id: crypto.randomUUID() },
       ...currentExpenses,
     ])
+  }
+
+  function deleteExpense(expenseId) {
+    setExpenses((currentExpenses) =>
+      currentExpenses.filter((expense) => expense.id !== expenseId),
+    )
   }
 
   const total = expenses.reduce(
@@ -88,7 +94,10 @@ function App() {
               No expenses in this category yet.
             </p>
           ) : (
-            <ExpenseList expenses={filteredExpenses} />
+            <ExpenseList
+              expenses={filteredExpenses}
+              onDeleteExpense={deleteExpense}
+            />
           )}
         </section>
       </div>
