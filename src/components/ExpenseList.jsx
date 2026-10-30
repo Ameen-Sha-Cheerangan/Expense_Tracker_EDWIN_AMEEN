@@ -1,7 +1,7 @@
 import ExpenseItem from './ExpenseItem.jsx'
 
-// ExpenseList receives an expenses array and owns no state; its parent manages expense data.
-function ExpenseList({ expenses }) {
+// ExpenseList receives expenses and a deletion callback; it owns no state.
+function ExpenseList({ expenses, onDeleteExpense }) {
   if (expenses.length === 0) {
     return (
       <p className="empty-state">
@@ -13,7 +13,11 @@ function ExpenseList({ expenses }) {
   return (
     <ul className="expense-list">
       {expenses.map((expense) => (
-        <ExpenseItem expense={expense} key={expense.id} />
+        <ExpenseItem
+          expense={expense}
+          key={expense.id}
+          onDeleteExpense={onDeleteExpense}
+        />
       ))}
     </ul>
   )

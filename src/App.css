@@ -254,6 +254,31 @@
   white-space: nowrap;
 }
 
+.delete-expense {
+  display: grid;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.delete-expense:hover {
+  color: #b42318;
+  background: #fff1f0;
+}
+
+.delete-expense:focus-visible {
+  outline: 3px solid rgb(85 73 201 / 18%);
+  outline-offset: 2px;
+}
+
 .app-footer {
   padding-top: 26px;
   font-size: 11px;

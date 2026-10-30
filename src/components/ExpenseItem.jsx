@@ -1,5 +1,5 @@
-// ExpenseItem receives one expense object and has no local state.
-function ExpenseItem({ expense }) {
+// ExpenseItem receives one expense and its deletion callback; it owns no state.
+function ExpenseItem({ expense, onDeleteExpense }) {
   return (
     <li className="expense-item">
       <span className="expense-category-mark" aria-hidden="true">
@@ -12,6 +12,14 @@ function ExpenseItem({ expense }) {
         </span>
       </div>
       <span className="expense-amount">{expense.amount.toFixed(2)}</span>
+      <button
+        aria-label={`Delete ${expense.description}`}
+        className="delete-expense"
+        onClick={() => onDeleteExpense(expense.id)}
+        type="button"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
     </li>
   )
 }
