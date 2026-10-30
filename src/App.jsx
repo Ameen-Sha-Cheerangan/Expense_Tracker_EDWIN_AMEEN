@@ -22,14 +22,14 @@ function App() {
     )
   }
 
-  const total = expenses.reduce(
-    (sum, expense) => sum + Math.round(expense.amount * 100),
-    0,
-  )
   const categories = [...new Set(expenses.map((expense) => expense.category))].sort()
   const filteredExpenses = selectedCategory
     ? expenses.filter((expense) => expense.category === selectedCategory)
     : expenses
+  const total = filteredExpenses.reduce(
+    (sum, expense) => sum + Math.round(expense.amount * 100),
+    0,
+  )
 
   return (
     <main className="app-shell">
