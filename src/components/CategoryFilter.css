@@ -1,0 +1,26 @@
+.category-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -4px 0 16px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.category-filter select {
+  max-width: 58%;
+  min-width: 132px;
+  height: 34px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-strong);
+  background-color: var(--surface);
+  font-size: 11px;
+}
+
+.category-filter select:focus-visible {
+  outline: 3px solid rgb(85 73 201 / 18%);
+  outline-offset: 2px;
+}

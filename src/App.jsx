@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import CategoryFilter from './components/CategoryFilter.jsx'
 import ExpenseForm from './components/ExpenseForm.jsx'
 import ExpenseList from './components/ExpenseList.jsx'
 import './App.css'
 
-// App has no props; it owns the in-session expense state and provides it to the UI.
+// App has no props; it owns the expenses and selected category state for this session.
 function App() {
   const [expenses, setExpenses] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   function addExpense(expense) {
     setExpenses((currentExpenses) => [
@@ -18,6 +20,10 @@ function App() {
     (sum, expense) => sum + Math.round(expense.amount * 100),
     0,
   )
+  const categories = [...new Set(expenses.map((expense) => expense.category))].sort()
+  const filteredExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory)
+    : expenses
 
   return (
     <main className="app-shell">
@@ -72,7 +78,18 @@ function App() {
             </div>
           </div>
 
-          <ExpenseList expenses={expenses} />
+          <CategoryFilter
+            categories={categories}
+            onCategoryChange={setSelectedCategory}
+            selectedCategory={selectedCategory}
+          />
+          {selectedCategory && filteredExpenses.length === 0 ? (
+            <p className="empty-state">
+              No expenses in this category yet.
+            </p>
+          ) : (
+            <ExpenseList expenses={filteredExpenses} />
+          )}
         </section>
       </div>
       <footer className="app-footer">A clearer view of where it goes.</footer>
