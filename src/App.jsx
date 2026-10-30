@@ -57,8 +57,10 @@ function App() {
           <p className="summary-total">{(total / 100).toFixed(2)}</p>
         </div>
         <div className="summary-count">
-          <span className="summary-count-value">{expenses.length}</span>
-          <span>{expenses.length === 1 ? 'expense' : 'expenses'} added</span>
+          <span className="summary-count-value">{filteredExpenses.length}</span>
+          <span>
+            {filteredExpenses.length === 1 ? 'expense' : 'expenses'} shown
+          </span>
         </div>
       </section>
 
